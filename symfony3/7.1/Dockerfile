@@ -21,5 +21,10 @@ RUN    apk update \
     && docker-php-ext-install pdo_pgsql \
     && apk del .psql-build-deps \
 
+    # install redis for sessions
+    && pecl install -o -f redis \
+    && rm -rf /tmp/pear \
+    && docker-php-ext-enable redis \
+
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
