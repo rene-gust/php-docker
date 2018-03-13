@@ -18,6 +18,10 @@ RUN    apk update \
     && pecl install -o -f redis \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable redis \
+    # install mbstring, json, xml
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install json \
+    && docker-php-ext-install xml \
     && apk del .redis-build-deps .mysql-build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*

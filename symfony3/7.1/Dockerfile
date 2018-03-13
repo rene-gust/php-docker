@@ -1,28 +1,16 @@
 FROM php:7.1-fpm-alpine
 MAINTAINER Linus Lotz<l.lotz@reply.de>
+ENV RUN_DEPS="mariadb-client-libs"
+ENV BUILD_DEPS="${PHPIZE_DEPS} mariadb-dev"
+ENV PECL_EXTS="redis"
+ENV PHP_EXTS="mysqli pdo_mysql "
 RUN    apk update \
     && apk upgrade \
-    # ICU
-    && apk add --no-cache libintl icu \
-    && apk add -t .icu-build-deps icu-dev \
-    && docker-php-ext-install intl \
-    && apk del .icu-build-deps \
-    # opcache
-    && docker-php-ext-install opcache \
-    # PDO
-    && docker-php-ext-install pdo \
-    # PDO MySQL
-    && docker-php-ext-install pdo_mysql \
-    # PDO PgSQL
-    && apk add --no-cache postgresql-libs \
-    && apk add --no-cache -t .psql-build-deps postgresql-dev \
-    && docker-php-ext-install pdo_pgsql \
-    && apk del .psql-build-deps \
-    # install redis for sessions
-    && apk add --no-cache --virtual .redis-build-deps $PHPIZE_DEPS \
-    && pecl install -o -f redis \
-    && rm -rf /tmp/pear \
-    && docker-php-ext-enable redis \
-    && apk del .redis-build-deps \
+    && apk add --no-cache $RUN_DEPS \
+    && apk add -t .build-deps $BUILD_DEPS \
+    && docker-php-ext-install $PHP_EXTS \
+    && pecl install -o -f $PECL_EXTS \
+    && docker-php-ext-enable $PECL_EXTS \
+    && apk del .build-deps \
     # Clear
     && rm -rf /tmp/* /var/cache/apk/*
