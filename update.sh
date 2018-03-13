@@ -7,7 +7,7 @@ php_versions=(["7.0"]="7.0-fpm-alpine"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-for framework in "symfony3"
+for framework in "symfony3" "laravel5"
 do
     for subdir in ${DIR}/${framework}/*/
     do
