@@ -22,8 +22,8 @@ add_extension () {
             ;;
         intl)
             php_extsions+="intl "
-            build_deps+="libicu-dev "
-            run_deps+="libintl icu "
+            build_deps+="icu-dev "
+            run_deps+="libintl icu-libs "
             ;;
         gd)
             php_extsions+="gd "
