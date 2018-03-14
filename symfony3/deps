@@ -1,5 +1,5 @@
 intl
 opcache
 mysql
-postgres
+pgsql
 redis

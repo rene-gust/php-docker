@@ -9,7 +9,7 @@ add_extension () {
             build_deps+="mariadb-dev "
             run_deps+="mariadb-client-libs "
             ;;
-        pgsql)
+        pgsql|postgres)
             add_extension pdo
             php_extsions+="pdo_pgsql "
             build_deps+="postgresql-dev "
@@ -20,12 +20,25 @@ add_extension () {
             build_deps+="libxml2-dev "
             run_deps+="libxml2 "
             ;;
-        opcache|json|pdo)
+        intl)
+            php_extsions+="intl "
+            build_deps+="libicu-dev "
+            run_deps+="libintl icu "
+            ;;
+        gd)
+            php_extsions+="gd "
+            run_deps+="libgd "
+            build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
+            ;;
+        opcache|json|pdo|mbstring|tokenizer|ctype)
             php_extensions+="$1 "
             ;;
         redis)
             pecl_extensions+="$1 "
-            ;;       
+            ;;
+        *)
+            echo "Unknown extension $1"
+            ;;
     esac
 }
 

@@ -3,3 +3,7 @@ xml
 pdo
 mysql
 redis
+gd
+mbstring
+ctype
+tokenizer

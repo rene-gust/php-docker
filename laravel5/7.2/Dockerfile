@@ -1,9 +1,9 @@
 FROM php:7.2-fpm-alpine3.7
 MAINTAINER Linus Lotz<l.lotz@reply.de>
-ENV RUN_DEPS="libxml2 mariadb-client-libs"
-ENV BUILD_DEPS="${PHPIZE_DEPS} libxml2-dev mariadb-dev"
+ENV RUN_DEPS="libgd libxml2 mariadb-client-libs"
+ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-dev zlib-dev"
 ENV PECL_EXTS="redis"
-ENV PHP_EXTS="xml mysqli pdo_mysql "
+ENV PHP_EXTS="xml mysqli pdo_mysql gd "
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
