@@ -3,7 +3,7 @@ MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="libgd libxml2 mariadb-client-libs"
 ENV BUILD_DEPS="${PHPIZE_DEPS} freetype-dev libjpeg-turbo-dev libpng-dev libwebp-dev libxml2-dev libxpm-dev mariadb-dev zlib-dev"
 ENV PECL_EXTS="redis"
-ENV PHP_EXTS="ctype gd json mbstring mysqli pdo pdo_mysql tokenizer xml"
+ENV PHP_EXTS="gd mysqli pdo_mysql xml"
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \

@@ -30,11 +30,13 @@ add_extension () {
             run_deps+="libgd "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
-        opcache|json|pdo|mbstring|tokenizer|ctype|curl|zip|openssl)
+        opcache|zip)
             php_extensions+="$1 "
             ;;
         redis)
             pecl_extensions+="$1 "
+            ;;
+        curl|openssl|mhash|mbstring|tokenizer|pdo|json|mysqlnd|sodium|libedit|zlib|ftp|ctype) # already included in php-alpine
             ;;
         *)
             echo "Unknown extension $1"

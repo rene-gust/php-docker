@@ -3,7 +3,7 @@ MAINTAINER Linus Lotz<l.lotz@reply.de>
 ENV RUN_DEPS="icu-libs libintl mariadb-client-libs postgresql-libs"
 ENV BUILD_DEPS="${PHPIZE_DEPS} icu-dev mariadb-dev postgresql-dev"
 ENV PECL_EXTS="redis"
-ENV PHP_EXTS="intl mysqli opcache pdo pdo_mysql pdo_pgsql"
+ENV PHP_EXTS="intl mysqli opcache pdo_mysql pdo_pgsql"
 RUN    apk update \
     && apk upgrade \
     && apk add --no-cache $RUN_DEPS \
