@@ -5,28 +5,28 @@ add_extension () {
 
         mysql)
             add_extension pdo
-            php_extsions+="mysqli pdo_mysql "
+            php_extensions+="mysqli pdo_mysql "
             build_deps+="mariadb-dev "
             run_deps+="mariadb-client-libs "
             ;;
         pgsql|postgres)
             add_extension pdo
-            php_extsions+="pdo_pgsql "
+            php_extensions+="pdo_pgsql "
             build_deps+="postgresql-dev "
             run_deps+="postgresql-libs "
             ;;
         xml)
-            php_extsions+="xml "
+            php_extensions+="xml "
             build_deps+="libxml2-dev "
             run_deps+="libxml2 "
             ;;
         intl)
-            php_extsions+="intl "
+            php_extensions+="intl "
             build_deps+="icu-dev "
             run_deps+="libintl icu-libs "
             ;;
         gd)
-            php_extsions+="gd "
+            php_extensions+="gd "
             run_deps+="libgd "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
@@ -52,7 +52,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 for framework in "symfony3" "laravel5" "shopware5"
 do
     pecl_extensions=""
-    php_extsions=""
+    php_extensions=""
     build_deps=""
     run_deps=""
     for ext in $(cat ${DIR}/${framework}/deps)
@@ -76,7 +76,7 @@ do
         echo "ENV RUN_DEPS=\"${run_deps}\"" >> $file
         echo "ENV BUILD_DEPS=\"\${PHPIZE_DEPS} ${build_deps}\"" >> $file
         echo "ENV PECL_EXTS=\"${pecl_extensions}\"" >> $file
-        echo "ENV PHP_EXTS=\"${php_extsions}\"" >> $file
+        echo "ENV PHP_EXTS=\"${php_extensions}\"" >> $file
         cat $DIR/Dockerfile.base >> $file
     done
 done
