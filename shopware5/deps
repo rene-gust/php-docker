@@ -1,0 +1,11 @@
+intl
+opcache
+mysql
+pgsql
+redis
+json
+curl
+gd
+mbstring
+openssl
+zip
