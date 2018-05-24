@@ -30,7 +30,7 @@ add_extension () {
             run_deps+="libgd "
             build_deps+="freetype-dev libwebp-dev libpng-dev zlib-dev libxpm-dev libjpeg-turbo-dev "
             ;;
-        opcache|json|pdo|mbstring|tokenizer|ctype)
+        opcache|json|pdo|mbstring|tokenizer|ctype|curl|zip|openssl)
             php_extensions+="$1 "
             ;;
         redis)
@@ -49,7 +49,7 @@ php_versions=(["7.0"]="7.0-fpm-alpine"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-for framework in "symfony3" "laravel5"
+for framework in "symfony3" "laravel5" "shopware5"
 do
     pecl_extensions=""
     php_extsions=""
